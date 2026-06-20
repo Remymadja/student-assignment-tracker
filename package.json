@@ -1,0 +1,25 @@
+{
+  "name": "student-assignment-tracker",
+  "version": "1.0.0",
+  "description": "Student Assignment Tracker - manage courses, assignments, submissions, grades and dashboard progress",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon --env-file=.env server.js",
+    "start": "node --env-file=.env server.js",
+    "db:setup": "node --env-file=.env scripts/db-setup.js",
+    "db:seed": "node --env-file=.env scripts/db-seed.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.10",
+    "express": "^4.18.3",
+    "express-session": "^1.18.1",
+    "multer": "^2.2.0",
+    "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

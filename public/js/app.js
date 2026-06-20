@@ -1,0 +1,1 @@
+console.log('Student Assignment Tracker loaded');

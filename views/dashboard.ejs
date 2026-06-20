@@ -1,0 +1,130 @@
+<%- include('partials/header') %>
+
+<div class="mb-4">
+  <h1 class="fw-bold">Student Assignment Tracker Dashboard</h1>
+  <p class="text-muted mb-0">
+    Manager overview van assignments, submissions, grades en deadlines.
+  </p>
+</div>
+
+<div class="row g-3 mb-4">
+
+  <div class="col-md">
+    <div class="card stat-card green-card p-3">
+      <div>Students</div>
+      <h2><%= counts.students %></h2>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="card stat-card blue-card p-3">
+      <div>Courses</div>
+      <h2><%= counts.courses %></h2>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="card stat-card purple-card p-3">
+      <div>Assignments</div>
+      <h2><%= counts.assignments %></h2>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="card stat-card yellow-card p-3">
+      <div>Submitted</div>
+      <h2><%= counts.submitted %></h2>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="card stat-card dark-card p-3">
+      <div>Graded</div>
+      <h2><%= counts.graded %></h2>
+    </div>
+  </div>
+
+</div>
+
+<div class="row g-4 mb-4">
+
+  <div class="col-lg-8">
+    <div class="card p-3">
+      <h4 class="mb-3">Assignment Progress</h4>
+
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Assignment</th>
+            <th>Course</th>
+            <th>Due</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% (assignmentProgress || []).forEach(r => { 
+            let pct = r.total_students 
+              ? Math.round((r.submitted_count / r.total_students) * 100) 
+              : 0;
+          %>
+
+            <tr>
+              <td><%= r.title %></td>
+              <td><%= r.course %></td>
+              <td><%= new Date(r.due_date).toISOString().slice(0,10) %></td>
+
+              <td style="min-width: 160px;">
+                <div class="progress">
+                  <div 
+                    class="progress-bar bg-success js-progress-bar" 
+                    data-width="<%= pct %>"
+                  >
+                    <%= pct %>%
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+
+    <div class="card p-3 mb-3">
+      <h4>KPI</h4>
+
+      <p class="mb-0">
+        Average grade:
+        <%= (kpi && kpi.average_grade) ? kpi.average_grade : '-' %>
+      </p>
+    </div>
+
+    <div class="card p-3">
+      <h4>Deadlines</h4>
+
+      <% (upcoming || []).forEach(u => { %>
+        <div class="mb-3">
+          <b><%= u.title %></b><br>
+          <small><%= u.course %></small><br>
+          <small><%= new Date(u.due_date).toISOString().slice(0,10) %></small>
+        </div>
+        <hr>
+      <% }) %>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.js-progress-bar').forEach(function (bar) {
+    const width = bar.getAttribute('data-width') || 0;
+    bar.style.width = width + '%';
+  });
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,105 @@
+body {
+  background: #f4faf6;
+  color: #1f2937;
+}
+
+.navbar {
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+/* Cards */
+
+.card {
+  border: 0;
+  border-radius: 20px;
+}
+
+.stat-card {
+  min-height: 110px;
+  color: white;
+  padding: 15px;
+}
+
+.stat-card h2 {
+  margin: 0;
+}
+
+/* Colors */
+
+.green-card {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.blue-card {
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+}
+
+.purple-card {
+  background: linear-gradient(135deg, #7e22ce, #a855f7);
+}
+
+.yellow-card {
+  background: linear-gradient(135deg, #ca8a04, #facc15);
+}
+
+.dark-card {
+  background: linear-gradient(135deg, #111827, #374151);
+}
+
+/* Buttons */
+
+.btn {
+  border-radius: 10px;
+}
+
+.btn-success {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+.btn-success:hover {
+  background: #15803d;
+  border-color: #15803d;
+}
+
+/* Tables */
+
+.table {
+  margin-bottom: 0;
+}
+
+/* Progress */
+
+.progress {
+  height: 22px;
+  background: #e5e7eb;
+  border-radius: 999px;
+}
+
+.progress-bar {
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* Deadlines */
+
+.deadline-item {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.deadline-normal {
+  background: #ecfdf5;
+  border-left: 4px solid #16a34a;
+}
+
+.deadline-soon {
+  background: #fef9c3;
+  border-left: 4px solid #eab308;
+}
+
+.deadline-overdue {
+  background: #fee2e2;
+  border-left: 4px solid #ef4444;
+}

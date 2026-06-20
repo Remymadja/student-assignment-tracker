@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+<div class="d-flex justify-content-between align-items-center mb-3"><h1 class="fw-bold">Assignments</h1></div>
+<% if(user.role==='admin' || user.role==='teacher'){ %>
+<div class="card rounded-4 shadow-sm mb-4"><div class="card-body"><h2 class="h5">Create Assignment</h2>
+<form method="post" action="/assignments" class="row g-3">
+  <div class="col-md-3"><label class="form-label">Course</label><select name="course_id" class="form-select"><% courses.forEach(c=>{ %><option value="<%= c.id %>"><%= c.name %></option><% }) %></select></div>
+  <div class="col-md-3"><label class="form-label">Title</label><input name="title" class="form-control" required></div>
+  <div class="col-md-2"><label class="form-label">Due date</label><input name="due_date" type="date" class="form-control" required></div>
+  <div class="col-md-2"><label class="form-label">Priority</label><select name="priority" class="form-select"><option>Low</option><option selected>Medium</option><option>High</option></select></div>
+  <div class="col-md-12"><label class="form-label">Description</label><textarea name="description" class="form-control"></textarea></div>
+  <div class="col-md-2"><button class="btn btn-success">Save</button></div>
+</form></div></div>
+<% } %>
+<div class="card rounded-4 shadow-sm"><div class="card-body"><table class="table align-middle"><thead><tr><th>Title</th><th>Course</th><th>Due</th><th>Priority</th><th>Progress</th></tr></thead><tbody>
+<% assignments.forEach(a=>{ let pct=a.total_students?Math.round((a.submitted_count/a.total_students)*100):0; %>
+<tr><td><strong><%= a.title %></strong><br><span class="text-muted"><%= a.description || '' %></span></td><td><%= a.course %></td><td><%= a.due_date.toISOString().slice(0,10) %></td><td><span class="badge <%= a.priority==='High'?'bg-danger':a.priority==='Medium'?'bg-warning text-dark':'bg-secondary' %>"><%= a.priority %></span></td><td><div class="progress"><div class="progress-bar bg-success" style="width:<%= pct %>%"><%= pct %>%</div></div></td></tr>
+<% }) %></tbody></table></div></div>
+<%- include('partials/footer') %>
