@@ -59,7 +59,7 @@ http://localhost:3000
 ## 4. Demo accounts
 
 | Rol | Email | Password |
-|---|---|---|
+
 | Admin | admin@example.com | admin123 |
 | Teacher | teacher@example.com | teacher123 |
 | Student | student@example.com | student123 |
@@ -71,3 +71,38 @@ http://localhost:3000
 - `/submissions` - ingeleverde assignments en grades
 - `/students` - studenten overzicht
 - `/courses` - courses overzicht
+
+
+## Technologies
+
+This project uses the following technologies:
+
+- Node.js
+- Express.js
+- EJS
+- MySQL
+- mysql2
+- bcrypt
+- express-session
+- connect-flash
+- multer
+- jsonwebtoken
+- Bootstrap
+- CSS
+- JavaScript
+
+## Requirements
+
+To run this project locally, install:
+
+- Node.js
+- npm
+- MySQL Server
+- MySQL Workbench
+- Git
+
+## Installation
+
+```powershell
+npm install
+copy .env.example .env

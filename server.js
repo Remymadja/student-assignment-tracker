@@ -10,6 +10,7 @@ import assignmentRoutes from './routes/assignments.js';
 import submissionRoutes from './routes/submissions.js';
 import studentRoutes from './routes/students.js';
 import courseRoutes from './routes/courses.js';
+import apiRoutes from './routes/api.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,7 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Hiermee kunnen uploaded files geopend worden via /uploads/bestandsnaam
+// Uploaded files openen via /uploads/bestandsnaam
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(express.urlencoded({ extended: true }));
@@ -43,12 +44,16 @@ app.use((req, res, next) => {
   next();
 });
 
+// Web routes
 app.use('/', authRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/assignments', assignmentRoutes);
 app.use('/submissions', submissionRoutes);
 app.use('/students', studentRoutes);
 app.use('/courses', courseRoutes);
+
+// API routes
+app.use('/api', apiRoutes);
 
 app.get('/health', (req, res) => {
   res.json({
